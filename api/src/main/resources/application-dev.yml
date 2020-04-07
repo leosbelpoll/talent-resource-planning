@@ -1,0 +1,19 @@
+spring:
+    datasource:
+        url: jdbc:sqlserver://localhost:1433;databaseName=talent_resource_planning_dev
+        username: sa
+        password: Password1
+        dbms: mssql
+        driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    jpa:
+        show-sql: true
+        hibernate:
+            dialect: org.hibernate.dialect.SQLServer2012Dialect
+            ddl-auto: update
+    flyway:
+        baseline-on-migrate: true
+
+logging:
+    level:
+        org:
+            springframework: ERROR
