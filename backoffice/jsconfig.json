@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./src/",
+        "paths": {
+            "*": ["*"]
+        },
+        "jsx": "react"
+    },
+    "include": ["src/**/*.js", "src/**/*.jsx"],
+    "baseURL": "/src"
+}
