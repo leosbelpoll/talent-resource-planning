@@ -1,3 +1,5 @@
+server:
+    port: 7070
 spring:
     datasource:
         url: jdbc:sqlserver://localhost:1433;databaseName=talent_resource_planning_dev
