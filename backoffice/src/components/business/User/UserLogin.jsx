@@ -34,7 +34,9 @@ export default function UserLogin(props) {
                             </label>
                         </div>
                     </div>
-                    <button className="btn btn-primary btn-block" onClick={login}>Sign in</button>
+                    <button className="btn btn-primary btn-block" onClick={login}>
+                        Sign in
+                    </button>
                     <div className="text-center m-4">
                         <span>Or login with</span>
                     </div>
