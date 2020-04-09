@@ -4,5 +4,5 @@ export default {
     HOME: "/",
     USERS: "/users",
     ROLES: "/roles",
-    PERMISSIONS: "/permissions",
+    PERMISSIONS: "/permissions"
 };

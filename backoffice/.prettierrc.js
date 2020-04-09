@@ -6,6 +6,6 @@ module.exports = {
     singleQuote: false, // use double quotes for everything (jsx / js)
     bracketSpacing: true, // Enforce spacing on bracketed statements
     jsxBracketSameLine: true, // Enforce closing JSX opening-tags on the same line
-    arrowParens: "always", // Enforce always using parens on arrow functions
-    trailingComma: "all", // append trailing comma according to ES5 rules
+    arrowParens: "avoid", // Avoid using parens on arrow functions
+    trailingComma: "none", // append trailing comma according to ES5 rules
 };
