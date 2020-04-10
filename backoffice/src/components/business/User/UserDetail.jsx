@@ -27,8 +27,7 @@ function UserDetail(props) {
                 content={user}
                 onlyColumns={[
                     {
-                        name: "name",
-                        link: item => `${URLMapping.USERS}/${item.id}`
+                        name: "name"
                     },
                     {
                         name: "lastName"

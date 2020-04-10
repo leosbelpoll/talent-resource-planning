@@ -1,44 +1,44 @@
-import { userTypes } from "../actions/usersActions";
+import { roleTypes } from "../actions/rolesActions";
 
 const initialState = {
-    users: [],
+    roles: [],
     loading: false,
     error: null
 };
 
-export default function (state = initialState, { type, users, user, error }) {
+export default function (state = initialState, { type, roles, role, error }) {
     switch (type) {
-        case userTypes.START_GETTING_USERS:
+        case roleTypes.START_GETTING_ROLES:
             return {
                 ...state,
                 loading: true
             };
-        case userTypes.SUCCESS_GETTING_USERS:
+        case roleTypes.SUCCESS_GETTING_ROLES:
             return {
                 ...state,
                 loading: false,
-                users: users,
+                roles: roles,
                 error: null
             };
-        case userTypes.ERROR_GETTING_USERS:
+        case roleTypes.ERROR_GETTING_ROLES:
             return {
                 ...state,
                 loading: false,
                 error: error
             };
-            case userTypes.START_GETTING_USER:
+            case roleTypes.START_GETTING_ROLE:
             return {
                 ...state,
                 loading: true
             };
-        case userTypes.SUCCESS_GETTING_USER:
+        case roleTypes.SUCCESS_GETTING_ROLE:
             return {
                 ...state,
                 loading: false,
-                user: user,
+                role: role,
                 error: null
             };
-        case userTypes.ERROR_GETTING_USER:
+        case roleTypes.ERROR_GETTING_ROLE:
             return {
                 ...state,
                 loading: false,

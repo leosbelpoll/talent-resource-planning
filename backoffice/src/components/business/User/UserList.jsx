@@ -5,7 +5,7 @@ import URLMapping from "utils/routes";
 import { startGettingUsers } from "components/redux/actions/usersActions";
 import Error from "components/ui/pages/Error";
 import Title from "components/ui/parts/Title";
-import List from "components/ui/parts/Table";
+import Table from "components/ui/parts/Table";
 
 function UserList(props) {
     const { users, loading, error, getUsers } = props;
@@ -21,7 +21,7 @@ function UserList(props) {
     return (
         <>
             <Title title="User list" loading={loading} />
-            <List
+            <Table
                 content={users}
                 onlyColumns={[
                     {

@@ -1,44 +1,44 @@
-import { userTypes } from "../actions/usersActions";
+import { permissionTypes } from "../actions/permissionsActions";
 
 const initialState = {
-    users: [],
+    permissions: [],
     loading: false,
     error: null
 };
 
-export default function (state = initialState, { type, users, user, error }) {
+export default function (state = initialState, { type, permissions, permission, error }) {
     switch (type) {
-        case userTypes.START_GETTING_USERS:
+        case permissionTypes.START_GETTING_PERMISSIONS:
             return {
                 ...state,
                 loading: true
             };
-        case userTypes.SUCCESS_GETTING_USERS:
+        case permissionTypes.SUCCESS_GETTING_PERMISSIONS:
             return {
                 ...state,
                 loading: false,
-                users: users,
+                permissions: permissions,
                 error: null
             };
-        case userTypes.ERROR_GETTING_USERS:
+        case permissionTypes.ERROR_GETTING_PERMISSIONS:
             return {
                 ...state,
                 loading: false,
                 error: error
             };
-            case userTypes.START_GETTING_USER:
+            case permissionTypes.START_GETTING_PERMISSION:
             return {
                 ...state,
                 loading: true
             };
-        case userTypes.SUCCESS_GETTING_USER:
+        case permissionTypes.SUCCESS_GETTING_PERMISSION:
             return {
                 ...state,
                 loading: false,
-                user: user,
+                permission: permission,
                 error: null
             };
-        case userTypes.ERROR_GETTING_USER:
+        case permissionTypes.ERROR_GETTING_PERMISSION:
             return {
                 ...state,
                 loading: false,

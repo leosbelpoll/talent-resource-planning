@@ -49,6 +49,11 @@ export default function Header() {
                             Permissions
                         </NavLink>
                     </li>
+                    <li className="nav-item">
+                        <NavLink activeClassName="active" className="nav-link" to="not-found">
+                            Not Found
+                        </NavLink>
+                    </li>
                 </ul>
                 <ul className="navbar-nav my-2 my-lg-0">
                     <li className="nav-item">

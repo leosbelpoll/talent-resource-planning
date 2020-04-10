@@ -9,7 +9,9 @@ export default {
 
     // Roles    
     ROLES: "/roles",
+    ROLE_DETAIL: "/roles/:id",
 
     // Permissions
-    PERMISSIONS: "/permissions"
+    PERMISSIONS: "/permissions",
+    PERMISSION_DETAIL: "/permissions/:id"
 };
