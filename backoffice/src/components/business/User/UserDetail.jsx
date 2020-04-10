@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import URLMapping from "utils/routes";
-import { startGettingUsers } from "components/redux/actions/usersActions";
+import { startGettingUser } from "components/redux/actions/usersActions";
 import Error from "components/ui/pages/Error";
 import Title from "components/ui/parts/Title";
-import List from "components/ui/parts/Table";
+import Table from "components/ui/parts/Table";
 
-function UserList(props) {
-    const { users, loading, error, getUsers } = props;
+function UserDetail(props) {
+    const { user, loading, error, getUser } = props;
+    const { id } = useParams();
 
     useEffect(() => {
-        getUsers();
-    }, [getUsers]);
+        getUser(id);
+    }, [id, getUser]);
 
     if (error) {
         return <Error />;
@@ -20,9 +22,9 @@ function UserList(props) {
 
     return (
         <>
-            <Title title="User list" loading={loading} />
-            <List
-                content={users}
+            <Title title="User detail" backUrl={URLMapping.USERS} loading={loading} />
+            <Table
+                content={user}
                 onlyColumns={[
                     {
                         name: "name",
@@ -45,13 +47,13 @@ function UserList(props) {
 }
 
 const mapStateToProps = state => ({
-    users: state.usersReducer.users || [],
+    user: state.usersReducer.user || {},
     error: state.usersReducer.error,
     loading: state.usersReducer.loading
 });
 
 const mapDispatchToProps = dispatch => ({
-    getUsers: () => dispatch(startGettingUsers())
+    getUser: id => dispatch(startGettingUser(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserList);
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetail);

@@ -6,7 +6,7 @@ const initialState = {
     error: null
 };
 
-export default function (state = initialState, { type, users, error }) {
+export default function (state = initialState, { type, users, user, error }) {
     switch (type) {
         case typesActions.START_GETTING_USERS:
             return {
@@ -21,6 +21,24 @@ export default function (state = initialState, { type, users, error }) {
                 error: null
             };
         case typesActions.ERROR_GETTING_USERS:
+            return {
+                ...state,
+                loading: false,
+                error: error
+            };
+            case typesActions.START_GETTING_USER:
+            return {
+                ...state,
+                loading: true
+            };
+        case typesActions.SUCCESS_GETTING_USER:
+            return {
+                ...state,
+                loading: false,
+                user: user,
+                error: null
+            };
+        case typesActions.ERROR_GETTING_USER:
             return {
                 ...state,
                 loading: false,
