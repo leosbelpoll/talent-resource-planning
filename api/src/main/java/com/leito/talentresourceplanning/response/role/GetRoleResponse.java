@@ -12,6 +12,8 @@ import java.util.Set;
 @Setter
 @Getter
 public class GetRoleResponse extends BaseResponse {
+    private Long id;
+
     private String name;
 
     private String description;
@@ -21,6 +23,7 @@ public class GetRoleResponse extends BaseResponse {
     private Set<Permission> permissions;
 
     public GetRoleResponse(Role role) {
+        setId(role.getId());
         setName(role.getName());
         setDescription(role.getDescription());
         setUsers(role.getUsers());
