@@ -1,8 +1,15 @@
 export default {
+    HOME: "/",
+
+    // Users
     LOGIN: "/login",
     REGISTER: "/register",
-    HOME: "/",
     USERS: "/users",
+    USER_DETAIL: "/users/:id",
+
+    // Roles    
     ROLES: "/roles",
+
+    // Permissions
     PERMISSIONS: "/permissions"
 };
