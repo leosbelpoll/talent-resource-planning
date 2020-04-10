@@ -13,6 +13,8 @@ import java.util.Set;
 @Setter
 @Getter
 public class GetUserResponse extends BaseResponse {
+    private Long id;
+
     private String username;
 
     private String name;
@@ -28,6 +30,7 @@ public class GetUserResponse extends BaseResponse {
     private String lifeStateDescription;
 
     public GetUserResponse(User user) {
+        setId(user.getId());
         setUsername(user.getUsername());
         setName(user.getName());
         setLastName(user.getLastName());
