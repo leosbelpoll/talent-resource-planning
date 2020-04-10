@@ -48,12 +48,12 @@ body {
 
 .icon {
     margin-top: -6px;
-    opacity: .6;
 }
 
 
 .icon-action{
     transition: all .2s linear;
+    opacity: .6;
 
     &:hover {
         opacity: 1;
