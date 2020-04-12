@@ -1,7 +1,8 @@
 import React from "react";
+import TableValue from "./TableValue";
 
 export default function VerticalTable(props) {
-    const { content, columns, getValue } = props;
+    const { content, columns } = props;
 
     return (
         <table className="table table-hover">
@@ -9,7 +10,9 @@ export default function VerticalTable(props) {
                 {columns.map((column, i) => (
                     <tr key={i}>
                         <th>{column.name}</th>
-                        <td>{getValue(content, column)}</td>
+                        <td>
+                            <TableValue item={content} column={column} />
+                        </td>
                     </tr>
                 ))}
             </tbody>

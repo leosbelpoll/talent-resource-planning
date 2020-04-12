@@ -1,7 +1,8 @@
 import React from "react";
+import TableValue from "./TableValue";
 
 export default function HorizontalTable(props) {
-    const { content, columns, getValue } = props;
+    const { content, columns } = props;
 
     return (
         <table className="table table-hover thead-dark">
@@ -17,7 +18,9 @@ export default function HorizontalTable(props) {
                     content.map((item, i) => (
                         <tr key={i}>
                             {columns.map((column, i) => (
-                                <td key={i}>{getValue(item, column)}</td>
+                                <td key={i}>
+                                    <TableValue item={item} column={column} />
+                                </td>
                             ))}
                         </tr>
                     ))}

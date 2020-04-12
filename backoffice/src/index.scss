@@ -64,3 +64,8 @@ body {
 .display-5 .icon {
     width: 35px;
 }
+
+.transparent {
+    opacity: 0;
+    pointer-events: none;
+}
