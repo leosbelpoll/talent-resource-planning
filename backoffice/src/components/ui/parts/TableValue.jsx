@@ -67,7 +67,7 @@ export default function TableValue(props) {
             }
             setTemplate(template => <Link to={linkTo}>{template}</Link>);
         }
-    }, [value, inputValue, editing, JSON.stringify(props.item)]);
+    }, [value, inputValue, editing, column, item, newValue]);
 
     return <>{template}</>;
 }
