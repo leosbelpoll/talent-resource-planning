@@ -1,6 +1,7 @@
 package com.leito.talentresourceplanning.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.leito.talentresourceplanning.request.user.CreateUserRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,10 +14,6 @@ import java.util.*;
 @Getter
 public class User extends BaseEntity{
     public static final String COLLECTION = "users";
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(unique = true)
     private String username;
@@ -36,4 +33,16 @@ public class User extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
+
+    public User(CreateUserRequest request) {
+        setUsername(request.getUsername());
+        setName(request.getName());
+        setLastName(request.getLastName());
+        setBirthDate(request.getBirthDate());
+        if (request.getLifeState() == null) {
+            setLifeState(LifeState.CREATED, "CREATED");
+        } else {
+            setLifeState(request.getLifeState(), request.getLifeStateDescription());
+        }
+    }
 }

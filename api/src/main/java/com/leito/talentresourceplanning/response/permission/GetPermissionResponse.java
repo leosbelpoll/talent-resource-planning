@@ -2,7 +2,7 @@ package com.leito.talentresourceplanning.response.permission;
 
 import com.leito.talentresourceplanning.entity.Permission;
 import com.leito.talentresourceplanning.entity.Role;
-import com.leito.talentresourceplanning.response.util.BaseResponse;
+import com.leito.talentresourceplanning.response.util.BaseDetailResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +10,7 @@ import java.util.Set;
 
 @Setter
 @Getter
-public class GetPermissionResponse extends BaseResponse {
-    private Long id;
+public class GetPermissionResponse extends BaseDetailResponse {
 
     private String name;
 
@@ -20,12 +19,9 @@ public class GetPermissionResponse extends BaseResponse {
     private Set<Role> roles;
 
     public GetPermissionResponse(Permission permission) {
-        setId(permission.getId());
+        super(permission);
         setName(permission.getName());
         setDescription(permission.getDescription());
         setRoles(permission.getRoles());
-
-        setLifeState(permission.getLifeState(), permission.getLifeStateDescription());
-        setAllDatesAt(permission);
     }
 }

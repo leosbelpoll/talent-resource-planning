@@ -1,6 +1,7 @@
 package com.leito.talentresourceplanning.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.leito.talentresourceplanning.request.role.CreateRoleRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,10 +14,6 @@ import java.util.*;
 @Getter
 public class Role extends BaseEntity {
     public static final String COLLECTION = "roles";
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @NotBlank
     @Column(unique = true)
@@ -43,9 +40,19 @@ public class Role extends BaseEntity {
 //            inverseJoinColumns = @JoinColumn(name = "subrole_id"))
 //    private Set<Role> subRoles = new HashSet<>();
 
+
+    public Role(String name) {
+        setName(name);
+    }
+
     public Role(String name, String description) {
-        this.name = name;
-        this.description = description;
+        this(name);
+        setDescription(description);
+    }
+
+    public Role(CreateRoleRequest request) {
+        setName(request.getName());
+        setDescription(request.getDescription());
     }
 
 //    public Role(String name, String description, Set<Permission> permissions) {

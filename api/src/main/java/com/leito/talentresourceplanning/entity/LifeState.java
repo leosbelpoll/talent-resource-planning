@@ -9,5 +9,7 @@ public enum LifeState {
     CREATED,
     ACTIVATED,
     SUSPENDED,
-    BLOCKED
+    BLOCKED,
+    TRASHED,
+    REMOVED
 }

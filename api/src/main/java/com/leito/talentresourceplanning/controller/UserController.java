@@ -6,7 +6,6 @@ import com.leito.talentresourceplanning.request.user.CreateUserRequest;
 import com.leito.talentresourceplanning.response.user.CreateUserResponse;
 import com.leito.talentresourceplanning.response.user.GetUserResponse;
 import javassist.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,20 +20,25 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(Mappings.USERS)
-public class UserController {
-    @Autowired
-    UserService userService;
+public class UserController extends BaseController<User> {
+
+    UserService service;
+
+    public UserController(UserService service) {
+        super(service);
+        this.service = service;
+    }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> list = userService.getAllUsers();
+    public ResponseEntity<List<User>> getAll() {
+        List<User> list = service.getAll();
         return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
     }
 
     @GetMapping(Mappings.ID_PARAMETER)
     public ResponseEntity<GetUserResponse> getUserById(@PathVariable("id") Long id) {
         try {
-            User user = userService.getUserById(id);
+            User user = service.getById(id);
             return new ResponseEntity<>(new GetUserResponse(user), new HttpHeaders(), HttpStatus.OK);
         } catch (NotFoundException e) {
             throw new ResponseStatusException(
@@ -43,9 +47,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Valid CreateUserRequest request) {
+    public ResponseEntity<CreateUserResponse> create(@RequestBody @Valid CreateUserRequest request) {
         try {
-            User newUser = userService.create(request.getEntity());
+            User newUser = service.create(new User(request));
             return new ResponseEntity<>(new CreateUserResponse(newUser), new HttpHeaders(), HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
             throw new ResponseStatusException(
@@ -56,20 +60,5 @@ public class UserController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<User> updateUser(@RequestBody @Valid User user) {
-        try {
-            User updatedUser = userService.update(user);
-            return new ResponseEntity<>(updatedUser, new HttpHeaders(), HttpStatus.OK);
-        } catch (NotFoundException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, e.getMessage(), e);
-        } catch (DataIntegrityViolationException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.CONFLICT, "User already exists", e);
-        } catch (Exception e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
-        }
-    }
+
 }

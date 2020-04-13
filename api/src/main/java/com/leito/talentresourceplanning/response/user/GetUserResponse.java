@@ -3,7 +3,7 @@ package com.leito.talentresourceplanning.response.user;
 import com.leito.talentresourceplanning.entity.LifeState;
 import com.leito.talentresourceplanning.entity.Role;
 import com.leito.talentresourceplanning.entity.User;
-import com.leito.talentresourceplanning.response.util.BaseResponse;
+import com.leito.talentresourceplanning.response.util.BaseDetailResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +12,7 @@ import java.util.Set;
 
 @Setter
 @Getter
-public class GetUserResponse extends BaseResponse {
-    private Long id;
+public class GetUserResponse extends BaseDetailResponse {
 
     private String username;
 
@@ -25,21 +24,12 @@ public class GetUserResponse extends BaseResponse {
 
     private Set<Role> roles;
 
-    private LifeState lifeState;
-
-    private String lifeStateDescription;
-
     public GetUserResponse(User user) {
-        setId(user.getId());
+        super(user);
         setUsername(user.getUsername());
         setName(user.getName());
         setLastName(user.getLastName());
         setBirthDate(user.getBirthDate());
         setRoles(user.getRoles());
-        setLifeState(user.getLifeState());
-        setLifeStateDescription(user.getLifeStateDescription());
-
-        setLifeState(user.getLifeState(), user.getLifeStateDescription());
-        setAllDatesAt(user);
     }
 }

@@ -3,6 +3,9 @@ package com.leito.talentresourceplanning.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
@@ -12,6 +15,10 @@ import java.util.Date;
 public class BaseEntity {
 //    @JsonIgnore
 //    private List<HistoryTrack> historyTracks = new ArrayList<>();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @JsonIgnore
     private Date createdAt;
@@ -30,13 +37,6 @@ public class BaseEntity {
 
     @Setter(AccessLevel.PRIVATE)
     private String lifeStateDescription;
-
-    public void setAllDatesAt(BaseEntity entity) {
-        setCreatedAt(entity.getCreatedAt());
-        setModifiedAt(entity.getModifiedAt());
-        setTrashedAt(entity.getTrashedAt());
-        setRemovedAt(entity.getRemovedAt());
-    }
 
     public void setLifeState(LifeState lifeState, String lifeStateDescription) {
         setLifeState(lifeState);

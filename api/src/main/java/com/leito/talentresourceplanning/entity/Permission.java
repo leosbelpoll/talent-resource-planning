@@ -1,6 +1,7 @@
 package com.leito.talentresourceplanning.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.leito.talentresourceplanning.request.permission.CreatePermissionRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,10 +16,6 @@ import java.util.Set;
 public class Permission extends BaseEntity{
     public static final String COLLECTION = "permissions";
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @NotBlank
     @Column(unique = true)
     private String name;
@@ -30,11 +27,16 @@ public class Permission extends BaseEntity{
     private Set<Role> roles = new HashSet<>();
 
     public Permission(String name) {
-        this.name = name;
+        setName(name);
     }
 
     public Permission(String name, String description) {
         this(name);
-        this.description = description;
+        setDescription(description);
+    }
+
+    public Permission(CreatePermissionRequest request) {
+        setName(request.getName());
+        setDescription(request.getDescription());
     }
 }
