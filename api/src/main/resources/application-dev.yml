@@ -1,12 +1,36 @@
+#server:
+#    port: 7070
+#spring:
+#    datasource:
+#        url: jdbc:sqlserver://localhost:1433;databaseName=talent_resource_planning_dev
+#        username: sa
+#        password: Password1
+#        dbms: mssql
+#        driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    jpa:
+#        show-sql: true
+#        hibernate:
+#            dialect: org.hibernate.dialect.SQLServer2012Dialect
+#            ddl-auto: update
+#    flyway:
+#        baseline-on-migrate: true
+#        locations: classpath:db/migration/mssql
+#
+#logging:
+#    level:
+#        org:
+#            springframework: ERROR
+
+
+
 server:
     port: 7070
 spring:
     datasource:
-        url: jdbc:sqlserver://localhost:1433;databaseName=talent_resource_planning_dev
-        username: sa
+        platform: postgres
+        url: jdbc:postgresql://localhost:5432/talent-resource-planning
+        username: postgres
         password: Password1
-        dbms: mssql
-        driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
     jpa:
         show-sql: true
         hibernate:
@@ -14,6 +38,7 @@ spring:
             ddl-auto: update
     flyway:
         baseline-on-migrate: true
+        locations: classpath:db/migration/postgres
 
 logging:
     level:
