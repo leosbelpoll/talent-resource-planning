@@ -50,7 +50,7 @@ export default function Header() {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink activeClassName="active" className="nav-link" to="not-found">
+                        <NavLink activeClassName="active" className="nav-link" to="/not-found">
                             Not Found
                         </NavLink>
                     </li>
