@@ -35,9 +35,14 @@ export default function TableValue(props) {
             setInputValue(e.target.value);
         };
 
+        const onSubmit = e => {
+            alert("TODO: modify element");
+            e.preventDefault();
+        };
+
         setTemplate(
             <div>
-                <form>
+                <form onSubmit={onSubmit}>
                     <input
                         className={classNames({
                             "position-absolute": true,

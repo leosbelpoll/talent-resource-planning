@@ -5,9 +5,15 @@ import apiCall from "utils/api";
 export function* getUsers() {
     try {
         const users = yield call(apiCall, `http://localhost:7070/users`);
+        const finalUsers = users.map(user => ({
+            ...user,
+            trash: () => {
+                alert("// TODO: Remove");
+            }
+        }));
         yield put({
             type: userTypes.SUCCESS_GETTING_USERS,
-            users
+            users: finalUsers
         });
     } catch (error) {
         yield put({

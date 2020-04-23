@@ -5,9 +5,15 @@ import apiCall from "utils/api";
 export function* getPermissions() {
     try {
         const permissions = yield call(apiCall, `http://localhost:7070/permissions`);
+        const finalPermissions = permissions.map(permission => ({
+            ...permission,
+            trash: () => {
+                alert("// TODO: Remove");
+            }
+        }));
         yield put({
             type: permissionTypes.SUCCESS_GETTING_PERMISSIONS,
-            permissions
+            permissions: finalPermissions
         });
     } catch (error) {
         yield put({

@@ -22,6 +22,7 @@ function UserList(props) {
         <>
             <Title title="User list" loading={loading} />
             <Table
+                type="crud"
                 content={users}
                 onlyColumns={[
                     {

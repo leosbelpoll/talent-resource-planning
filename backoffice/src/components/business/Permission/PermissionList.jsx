@@ -22,6 +22,7 @@ function PermissionList(props) {
         <>
             <Title title="Permission list" loading={loading} />
             <Table
+                type="crud"
                 content={permissions}
                 onlyColumns={[
                     {

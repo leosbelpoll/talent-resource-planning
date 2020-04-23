@@ -22,6 +22,7 @@ function RoleList(props) {
         <>
             <Title title="Role list" loading={loading} />
             <Table
+                type="crud"
                 content={roles}
                 onlyColumns={[
                     {

@@ -5,9 +5,15 @@ import apiCall from "utils/api";
 export function* getRoles() {
     try {
         const roles = yield call(apiCall, `http://localhost:7070/roles`);
+        const finalRoles = roles.map(role => ({
+            ...role,
+            trash: () => {
+                alert("// TODO: Remove");
+            }
+        }));
         yield put({
             type: roleTypes.SUCCESS_GETTING_ROLES,
-            roles
+            roles: finalRoles
         });
     } catch (error) {
         yield put({

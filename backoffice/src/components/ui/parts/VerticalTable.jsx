@@ -9,7 +9,7 @@ export default function VerticalTable(props) {
             <tbody>
                 {columns.map((column, i) => (
                     <tr key={i}>
-                        <th>{column.name}</th>
+                        <th>{column.displayText || column.name}</th>
                         <td>
                             <TableValue item={content} column={column} />
                         </td>
