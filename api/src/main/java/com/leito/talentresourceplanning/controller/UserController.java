@@ -1,10 +1,12 @@
 package com.leito.talentresourceplanning.controller;
 
-import java.util.List;
-
 import com.leito.talentresourceplanning.request.user.CreateUserRequest;
 import com.leito.talentresourceplanning.response.user.CreateUserResponse;
 import com.leito.talentresourceplanning.response.user.GetUserResponse;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import javassist.NotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -18,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
+@Api(value = "User Controller")
 @RestController
 @RequestMapping(Mappings.USERS)
 public class UserController extends BaseController<User> {
@@ -29,14 +32,13 @@ public class UserController extends BaseController<User> {
         this.service = service;
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> getAll() {
-        List<User> list = service.getAll();
-        return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
-    }
-
+    @ApiOperation(value = "Get item", response = ResponseEntity.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = StatusCodesMessages.STATUS_CODE_200),
+            @ApiResponse(code = 404, message = StatusCodesMessages.STATUS_CODE_404)
+    })
     @GetMapping(Mappings.ID_PARAMETER)
-    public ResponseEntity<GetUserResponse> getUserById(@PathVariable("id") Long id) {
+    public ResponseEntity<GetUserResponse> get(@PathVariable("id") Long id) {
         try {
             User user = service.getById(id);
             return new ResponseEntity<>(new GetUserResponse(user), new HttpHeaders(), HttpStatus.OK);
@@ -46,6 +48,11 @@ public class UserController extends BaseController<User> {
         }
     }
 
+    @ApiOperation(value = "Create item", response = ResponseEntity.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = StatusCodesMessages.STATUS_CODE_200),
+            @ApiResponse(code = 409, message = StatusCodesMessages.STATUS_CODE_409)
+    })
     @PostMapping
     public ResponseEntity<CreateUserResponse> create(@RequestBody @Valid CreateUserRequest request) {
         try {
@@ -53,12 +60,10 @@ public class UserController extends BaseController<User> {
             return new ResponseEntity<>(new CreateUserResponse(newUser), new HttpHeaders(), HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
             throw new ResponseStatusException(
-                    HttpStatus.CONFLICT, "User already exists", e);
+                    HttpStatus.CONFLICT, e.getMessage(), e);
         } catch (Exception e) {
             throw new ResponseStatusException(
                     HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
         }
     }
-
-
 }

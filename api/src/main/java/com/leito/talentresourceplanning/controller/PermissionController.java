@@ -5,6 +5,10 @@ import com.leito.talentresourceplanning.request.permission.CreatePermissionReque
 import com.leito.talentresourceplanning.response.permission.CreatePermissionResponse;
 import com.leito.talentresourceplanning.response.permission.GetPermissionResponse;
 import com.leito.talentresourceplanning.service.PermissionService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import javassist.NotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
+@Api(value = "Permission Controller")
 @RestController
 @RequestMapping(Mappings.PERMISSIONS)
 public class PermissionController extends BaseController<Permission> {
@@ -26,6 +31,11 @@ public class PermissionController extends BaseController<Permission> {
         this.service = service;
     }
 
+    @ApiOperation(value = "Get item", response = ResponseEntity.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = StatusCodesMessages.STATUS_CODE_200),
+            @ApiResponse(code = 404, message = StatusCodesMessages.STATUS_CODE_404)
+    })
     @GetMapping(Mappings.ID_PARAMETER)
     public ResponseEntity<GetPermissionResponse> get(@PathVariable("id") Long id) {
         try {
@@ -37,6 +47,11 @@ public class PermissionController extends BaseController<Permission> {
         }
     }
 
+    @ApiOperation(value = "Create item", response = ResponseEntity.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = StatusCodesMessages.STATUS_CODE_200),
+            @ApiResponse(code = 409, message = StatusCodesMessages.STATUS_CODE_409)
+    })
     @PostMapping
     public ResponseEntity<CreatePermissionResponse> createPermission(@RequestBody @Valid CreatePermissionRequest request) {
         try {
@@ -44,7 +59,7 @@ public class PermissionController extends BaseController<Permission> {
             return new ResponseEntity<>(new CreatePermissionResponse(newPermission), new HttpHeaders(), HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
             throw new ResponseStatusException(
-                    HttpStatus.CONFLICT, "Permission already exists", e);
+                    HttpStatus.CONFLICT, e.getMessage(), e);
         } catch (Exception e) {
             throw new ResponseStatusException(
                     HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
