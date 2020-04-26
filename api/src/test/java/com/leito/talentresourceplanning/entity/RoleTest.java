@@ -1,5 +1,6 @@
 package com.leito.talentresourceplanning.entity;
 
+import com.leito.talentresourceplanning.request.role.CreateRoleRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -59,6 +60,18 @@ class RoleTest {
     @Test
     void fullConstructor() {
         Role role = new Role(name, description);
+
+        assertEquals(role.getName(), name);
+        assertEquals(role.getDescription(), description);
+    }
+
+    @Test
+    void requestLifeStateConstructor() {
+        CreateRoleRequest request = new CreateRoleRequest();
+        request.setName(name);
+        request.setDescription(description);
+
+        Role role = new Role(request);
 
         assertEquals(role.getName(), name);
         assertEquals(role.getDescription(), description);

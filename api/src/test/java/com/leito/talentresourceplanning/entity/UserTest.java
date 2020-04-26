@@ -1,5 +1,6 @@
 package com.leito.talentresourceplanning.entity;
 
+import com.leito.talentresourceplanning.request.user.CreateUserRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -62,6 +63,46 @@ class UserTest {
         assertEquals(user.getLastName(), lastName);
         assertEquals(user.getBirthDate(), birthDate);
         assertEquals(user.getRoles(), roles);
+    }
+
+    @Test
+    void requestLifeStateConstructor() {
+        CreateUserRequest request = new CreateUserRequest();
+        request.setName(name);
+        request.setLastName(lastName);
+        request.setUsername(username);
+        request.setBirthDate(birthDate);
+        request.setLifeState(LifeState.CREATED);
+        request.setLifeStateDescription("CREATED");
+
+        User user = new User(request);
+
+        assertEquals(user.getUsername(), username);
+        assertEquals(user.getName(), name);
+        assertEquals(user.getLastName(), lastName);
+        assertEquals(user.getBirthDate(), birthDate);
+        assertEquals(user.getRoles(), roles);
+        assertEquals(user.getLifeState(), LifeState.CREATED);
+        assertEquals(user.getLifeStateDescription(), "CREATED");
+    }
+
+    @Test
+    void requestNoLifeStateConstructor() {
+        CreateUserRequest request = new CreateUserRequest();
+        request.setName(name);
+        request.setLastName(lastName);
+        request.setUsername(username);
+        request.setBirthDate(birthDate);
+
+        User user = new User(request);
+
+        assertEquals(user.getUsername(), username);
+        assertEquals(user.getName(), name);
+        assertEquals(user.getLastName(), lastName);
+        assertEquals(user.getBirthDate(), birthDate);
+        assertEquals(user.getRoles(), roles);
+        assertEquals(user.getLifeState(), LifeState.CREATED);
+        assertEquals(user.getLifeStateDescription(), "CREATED");
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.leito.talentresourceplanning.entity;
 
+import com.leito.talentresourceplanning.request.permission.CreatePermissionRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,6 +58,18 @@ class PermissionTest {
     @Test
     void fullConstructor() {
         Permission permission = new Permission(name, description);
+
+        assertEquals(permission.getName(), name);
+        assertEquals(permission.getDescription(), description);
+    }
+
+    @Test
+    void requestLifeStateConstructor() {
+        CreatePermissionRequest request = new CreatePermissionRequest();
+        request.setName(name);
+        request.setDescription(description);
+
+        Permission permission = new Permission(request);
 
         assertEquals(permission.getName(), name);
         assertEquals(permission.getDescription(), description);
