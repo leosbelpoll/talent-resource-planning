@@ -10,8 +10,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RoleTest {
 
@@ -197,6 +196,17 @@ class RoleTest {
         role.setPermissions(value);
 
         assertEquals(role.getPermissions(), value);
+    }
+
+    @Test
+    void hasPermission() throws Exception {
+        Permission permission = new Permission("CREATE_BRIEFCASE");
+        Permission permissionDoestHave = new Permission("REMOVE_BRIEFCASE");
+        Set<Permission> permissions = new HashSet<>(Arrays.asList(permission));
+        role.setPermissions(permissions);
+
+        assertTrue(role.hasPermission(permission));
+        assertFalse(role.hasPermission(permissionDoestHave));
     }
 
     @Test
