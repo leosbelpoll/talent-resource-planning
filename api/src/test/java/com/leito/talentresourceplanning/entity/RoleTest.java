@@ -33,6 +33,8 @@ class RoleTest {
         role.setId(1L);
         role.setName(name);
         role.setDescription(description);
+        role.setUsers(users);
+        role.setPermissions(permissions);
         role.setLifeState(LifeState.CREATED, "CREATED");
         role.setCreatedAt(createdAt);
         role.setModifiedAt(modifiedAt);
