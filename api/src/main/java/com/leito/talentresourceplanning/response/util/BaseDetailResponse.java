@@ -2,20 +2,20 @@ package com.leito.talentresourceplanning.response.util;
 
 import com.leito.talentresourceplanning.entity.BaseEntity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class BaseDetailResponse extends BaseResponse {
 
-    private Date createdAt;
+    private LocalDate createdAt;
 
-    private Date modifiedAt;
+    private LocalDate modifiedAt;
 
-    private Date trashedAt;
+    private LocalDate trashedAt;
 
-    private Date removedAt;
+    private LocalDate removedAt;
 
     public BaseDetailResponse(BaseEntity item) {
-        setId(item.getId());
+        super(item);
         setCreatedAt(item.getCreatedAt());
         setModifiedAt(item.getModifiedAt());
         setTrashedAt(item.getTrashedAt());

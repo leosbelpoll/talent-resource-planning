@@ -1,12 +1,12 @@
 package com.leito.talentresourceplanning.entity;
 
 import com.leito.talentresourceplanning.request.role.CreateRoleRequest;
+import com.leito.talentresourceplanning.testutils.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,17 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class RoleTest {
 
     private Role role;
-    private final String name = "ADMIN";
-    private final String description = "App administrator";
-    private final Set<User> users = new HashSet<>();
-    private final Set<Permission> permissions = new HashSet<>();
-    private final Date createdAt    = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-20");
-    private final Date modifiedAt   = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-23");
-    private final Date trashedAt    = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-24");
-    private final Date removedAt    = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-25");
-
-    RoleTest() throws Exception {
-    }
+    private final String name = Constants.role_name;
+    private final String description = Constants.role_description;
+    private final Set<User> users = Constants.role_users;
+    private final Set<Permission> permissions = Constants.role_permissions;
+    private final LocalDate createdAt = Constants.createdAt;
+    private final LocalDate modifiedAt = Constants.modifiedAt;
+    private final LocalDate trashedAt = Constants.trashedAt;
+    private final LocalDate removedAt = Constants.removedAt;
 
     @BeforeEach
     void setUp() {
@@ -35,7 +32,7 @@ class RoleTest {
         role.setDescription(description);
         role.setUsers(users);
         role.setPermissions(permissions);
-        role.setLifeState(LifeState.CREATED, "CREATED");
+        role.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
         role.setCreatedAt(createdAt);
         role.setModifiedAt(modifiedAt);
         role.setTrashedAt(trashedAt);
@@ -127,32 +124,32 @@ class RoleTest {
     }
 
     @Test
-    void setCreatedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setCreatedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         role.setCreatedAt(value);
 
         assertEquals(role.getCreatedAt(), value);
     }
 
     @Test
-    void setModifiedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setModifiedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         role.setModifiedAt(value);
 
         assertEquals(role.getModifiedAt(), value);
     }
 
     @Test
-    void setTrashedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setTrashedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         role.setTrashedAt(value);
 
         assertEquals(role.getTrashedAt(), value);
     }
 
     @Test
-    void setRemovedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setRemovedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         role.setRemovedAt(value);
 
         assertEquals(role.getRemovedAt(), value);
@@ -199,7 +196,7 @@ class RoleTest {
     }
 
     @Test
-    void hasPermission() throws Exception {
+    void hasPermission() {
         Permission permission = new Permission("CREATE_BRIEFCASE");
         Permission permissionDoestHave = new Permission("REMOVE_BRIEFCASE");
         Set<Permission> permissions = new HashSet<>(Arrays.asList(permission));
@@ -220,32 +217,32 @@ class RoleTest {
     }
 
     @Test
-    void getCreatedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getCreatedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         role.setCreatedAt(value);
 
         assertEquals(role.getCreatedAt(), value);
     }
 
     @Test
-    void getModifiedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getModifiedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         role.setModifiedAt(value);
 
         assertEquals(role.getModifiedAt(), value);
     }
 
     @Test
-    void getTrashedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getTrashedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         role.setTrashedAt(value);
 
         assertEquals(role.getTrashedAt(), value);
     }
 
     @Test
-    void getRemovedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getRemovedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         role.setRemovedAt(value);
 
         assertEquals(role.getRemovedAt(), value);

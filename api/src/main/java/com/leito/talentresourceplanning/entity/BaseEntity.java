@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.Date;
+import java.time.LocalDate;
 
 @MappedSuperclass
 @Setter
@@ -20,17 +20,16 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
-    private Date createdAt;
+    private LocalDate createdAt;
 
     @JsonIgnore
-    private Date modifiedAt;
+    private LocalDate modifiedAt;
 
     @JsonIgnore
-    private Date trashedAt;
+    private LocalDate trashedAt;
 
     @JsonIgnore
-    private Date removedAt;
+    private LocalDate removedAt;
 
     @Setter(AccessLevel.PRIVATE)
     private LifeState lifeState;

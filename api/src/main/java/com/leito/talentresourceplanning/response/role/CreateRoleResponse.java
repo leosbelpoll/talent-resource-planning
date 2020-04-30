@@ -13,6 +13,7 @@ public class CreateRoleResponse extends BaseResponse {
     private String description;
 
     public CreateRoleResponse(Role role) {
+        super(role);
         setName(role.getName());
         setDescription(role.getDescription());
 

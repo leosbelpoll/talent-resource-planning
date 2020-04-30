@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -24,7 +24,7 @@ public class RegisterUserRequest extends BaseRequest {
     @NotBlank
     private String lastName;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     public User getEntity() {
         User user = new User();
@@ -34,8 +34,8 @@ public class RegisterUserRequest extends BaseRequest {
         user.setLastName(lastName);
         user.setBirthDate(birthDate);
 
-        user.setLifeState(LifeState.REGISTERED, "Registered");
-        user.setCreatedAt(new Date());
+        user.setLifeState(LifeState.REGISTERED, LifeState.REGISTERED.toString());
+        user.setCreatedAt(LocalDate.now());
 
         return user;
     }

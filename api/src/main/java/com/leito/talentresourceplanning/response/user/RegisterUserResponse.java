@@ -5,7 +5,7 @@ import com.leito.talentresourceplanning.response.util.BaseResponse;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -16,9 +16,10 @@ public class RegisterUserResponse extends BaseResponse {
 
     private String lastName;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     public RegisterUserResponse(User user) {
+        super(user);
         setUsername(user.getUsername());
         setName(user.getName());
         setLastName(user.getLastName());

@@ -1,12 +1,12 @@
 package com.leito.talentresourceplanning.entity;
 
 import com.leito.talentresourceplanning.request.permission.CreatePermissionRequest;
+import com.leito.talentresourceplanning.testutils.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,16 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class PermissionTest {
 
     private Permission permission;
-    private final String name = "ADMIN";
-    private final String description = "App administrator";
-    private final Set<Role> roles = new HashSet<>();
-    private final Date createdAt    = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-20");
-    private final Date modifiedAt   = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-23");
-    private final Date trashedAt    = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-24");
-    private final Date removedAt    = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-25");
-
-    PermissionTest() throws Exception {
-    }
+    private final String name = Constants.permission_name;
+    private final String description = Constants.permission_description;
+    private final Set<Role> roles = Constants.permission_roles;
+    private final LocalDate createdAt = Constants.createdAt;
+    private final LocalDate modifiedAt = Constants.modifiedAt;
+    private final LocalDate trashedAt = Constants.trashedAt;
+    private final LocalDate removedAt = Constants.removedAt;
 
     @BeforeEach
     void setUp() {
@@ -34,7 +31,7 @@ class PermissionTest {
         permission.setName(name);
         permission.setDescription(description);
         permission.setRoles(roles);
-        permission.setLifeState(LifeState.CREATED, "CREATED");
+        permission.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
         permission.setCreatedAt(createdAt);
         permission.setModifiedAt(modifiedAt);
         permission.setTrashedAt(trashedAt);
@@ -118,32 +115,32 @@ class PermissionTest {
     }
 
     @Test
-    void setCreatedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setCreatedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         permission.setCreatedAt(value);
 
         assertEquals(permission.getCreatedAt(), value);
     }
 
     @Test
-    void setModifiedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setModifiedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         permission.setModifiedAt(value);
 
         assertEquals(permission.getModifiedAt(), value);
     }
 
     @Test
-    void setTrashedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setTrashedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         permission.setTrashedAt(value);
 
         assertEquals(permission.getTrashedAt(), value);
     }
 
     @Test
-    void setRemovedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setRemovedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         permission.setRemovedAt(value);
 
         assertEquals(permission.getRemovedAt(), value);
@@ -192,32 +189,32 @@ class PermissionTest {
     }
 
     @Test
-    void getCreatedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getCreatedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         permission.setCreatedAt(value);
 
         assertEquals(permission.getCreatedAt(), value);
     }
 
     @Test
-    void getModifiedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getModifiedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         permission.setModifiedAt(value);
 
         assertEquals(permission.getModifiedAt(), value);
     }
 
     @Test
-    void getTrashedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getTrashedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         permission.setTrashedAt(value);
 
         assertEquals(permission.getTrashedAt(), value);
     }
 
     @Test
-    void getRemovedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getRemovedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         permission.setRemovedAt(value);
 
         assertEquals(permission.getRemovedAt(), value);

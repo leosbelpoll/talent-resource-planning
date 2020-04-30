@@ -13,6 +13,7 @@ public class CreatePermissionResponse extends BaseResponse {
     private String description;
 
     public CreatePermissionResponse(Permission permission) {
+        super(permission);
         setName(permission.getName());
         setDescription(permission.getDescription());
 

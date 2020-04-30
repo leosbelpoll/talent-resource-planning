@@ -5,6 +5,7 @@ import com.leito.talentresourceplanning.request.user.CreateUserRequest;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 @Entity(name = User.COLLECTION)
@@ -24,7 +25,7 @@ public class User extends BaseEntity{
 
     private String lastName;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @ManyToMany
     @JoinTable(
@@ -40,7 +41,7 @@ public class User extends BaseEntity{
         setLastName(request.getLastName());
         setBirthDate(request.getBirthDate());
         if (request.getLifeState() == null) {
-            setLifeState(LifeState.CREATED, "CREATED");
+            setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
         } else {
             setLifeState(request.getLifeState(), request.getLifeStateDescription());
         }

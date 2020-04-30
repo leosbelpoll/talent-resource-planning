@@ -1,12 +1,13 @@
 package com.leito.talentresourceplanning.service;
 
+import com.leito.talentresourceplanning.controller.util.StatusCodesMessages;
 import com.leito.talentresourceplanning.entity.BaseEntity;
 import com.leito.talentresourceplanning.entity.LifeState;
 import javassist.NotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,11 +34,13 @@ public abstract class BaseService<T extends BaseEntity> {
         if (item.isPresent()) {
             return item.get();
         } else {
-            throw new NotFoundException("No record exist for given id");
+            throw new NotFoundException(StatusCodesMessages.STATUS_CODE_400);
         }
     }
 
     public T create(T item) {
+        item.setCreatedAt(LocalDate.now());
+        item.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
         T newItem = repository.save(item);
 
         return newItem;
@@ -51,33 +54,37 @@ public abstract class BaseService<T extends BaseEntity> {
 
             return newItem;
         } else {
-            throw new NotFoundException("No record exist for given id");
+            throw new NotFoundException(StatusCodesMessages.STATUS_CODE_400);
         }
     }
 
-    public void trash(Long id) throws NotFoundException {
+    public T trash(Long id) throws NotFoundException {
         Optional<T> optionalItem = repository.findById(id);
         if (!optionalItem.isPresent()) {
-            throw new NotFoundException("No record exist for given id");
+            throw new NotFoundException(StatusCodesMessages.STATUS_CODE_400);
         }
 
         T item = optionalItem.get();
-        item.setLifeState(LifeState.TRASHED, "TRASHED");
-        item.setTrashedAt(new Date());
+        item.setLifeState(LifeState.TRASHED, LifeState.TRASHED.toString());
+        item.setTrashedAt(LocalDate.now());
 
-        repository.save(item);
+        T trashedItem = repository.save(item);
+
+        return trashedItem;
     }
 
-    public void remove(Long id) throws NotFoundException {
+    public T remove(Long id) throws NotFoundException {
         Optional<T> optionalItem = repository.findById(id);
         if (!optionalItem.isPresent()) {
-            throw new NotFoundException("No record exist for given id");
+            throw new NotFoundException(StatusCodesMessages.STATUS_CODE_400);
         }
 
         T item = optionalItem.get();
-        item.setLifeState(LifeState.REMOVED, "REMOVED");
-        item.setRemovedAt(new Date());
+        item.setLifeState(LifeState.REMOVED, LifeState.REMOVED.toString());
+        item.setRemovedAt(LocalDate.now());
 
-        repository.save(item);
+        T removedItem = repository.save(item);
+
+        return removedItem;
     }
 }

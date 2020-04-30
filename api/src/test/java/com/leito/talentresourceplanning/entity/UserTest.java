@@ -1,12 +1,12 @@
 package com.leito.talentresourceplanning.entity;
 
 import com.leito.talentresourceplanning.request.user.CreateUserRequest;
+import com.leito.talentresourceplanning.testutils.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,19 +15,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
 
     private User user;
-    private final String username   = "fperez";
-    private final String password   = "Password1";
-    private final String name       = "Federico";
-    private final String lastName   = "Pérez";
-    private final Date birthDate    = new SimpleDateFormat("yyyy-MM-dd").parse("1988-06-17");
-    private final Set<Role> roles   = new HashSet<>();
-    private final Date createdAt    = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-20");
-    private final Date modifiedAt   = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-23");
-    private final Date trashedAt    = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-24");
-    private final Date removedAt    = new SimpleDateFormat("yyyy-MM-dd").parse("2020-04-25");
-
-    UserTest() throws Exception {
-    }
+    private final String username = Constants.user_username;
+    private final String password = Constants.user_textPlainPassword;
+    private final String name = Constants.user_name;
+    private final String lastName = Constants.user_lastName;
+    private final LocalDate birthDate = Constants.user_birthDate;
+    private final Set<Role> roles = Constants.user_roles;
+    private final LocalDate createdAt = Constants.createdAt;
+    private final LocalDate modifiedAt = Constants.modifiedAt;
+    private final LocalDate trashedAt = Constants.trashedAt;
+    private final LocalDate removedAt = Constants.removedAt;
 
     @BeforeEach
     void setUp() {
@@ -39,7 +36,7 @@ class UserTest {
         user.setLastName(lastName);
         user.setBirthDate(birthDate);
         user.setRoles(roles);
-        user.setLifeState(LifeState.CREATED, "CREATED");
+        user.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
         user.setCreatedAt(createdAt);
         user.setModifiedAt(modifiedAt);
         user.setTrashedAt(trashedAt);
@@ -73,7 +70,7 @@ class UserTest {
         request.setUsername(username);
         request.setBirthDate(birthDate);
         request.setLifeState(LifeState.CREATED);
-        request.setLifeStateDescription("CREATED");
+        request.setLifeStateDescription(LifeState.CREATED.toString());
 
         User user = new User(request);
 
@@ -83,7 +80,7 @@ class UserTest {
         assertEquals(user.getBirthDate(), birthDate);
         assertEquals(user.getRoles(), roles);
         assertEquals(user.getLifeState(), LifeState.CREATED);
-        assertEquals(user.getLifeStateDescription(), "CREATED");
+        assertEquals(user.getLifeStateDescription(), LifeState.CREATED.toString());
     }
 
     @Test
@@ -102,7 +99,7 @@ class UserTest {
         assertEquals(user.getBirthDate(), birthDate);
         assertEquals(user.getRoles(), roles);
         assertEquals(user.getLifeState(), LifeState.CREATED);
-        assertEquals(user.getLifeStateDescription(), "CREATED");
+        assertEquals(user.getLifeStateDescription(), LifeState.CREATED.toString());
     }
 
     @Test
@@ -146,8 +143,8 @@ class UserTest {
     }
 
     @Test
-    void setBirthDate() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("1972-08-20");
+    void setBirthDate() {
+        LocalDate value = LocalDate.of(1972, 8, 20);
         user.setBirthDate(value);
 
         assertEquals(user.getBirthDate(), value);
@@ -172,32 +169,32 @@ class UserTest {
     }
 
     @Test
-    void setCreatedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setCreatedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         user.setCreatedAt(value);
 
         assertEquals(user.getCreatedAt(), value);
     }
 
     @Test
-    void setModifiedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setModifiedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         user.setModifiedAt(value);
 
         assertEquals(user.getModifiedAt(), value);
     }
 
     @Test
-    void setTrashedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setTrashedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         user.setTrashedAt(value);
 
         assertEquals(user.getTrashedAt(), value);
     }
 
     @Test
-    void setRemovedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void setRemovedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         user.setRemovedAt(value);
 
         assertEquals(user.getRemovedAt(), value);
@@ -244,8 +241,8 @@ class UserTest {
     }
 
     @Test
-    void getBirthDate() throws Exception{
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("1972-08-20");
+    void getBirthDate() {
+        LocalDate value = LocalDate.of(1972,8, 20);
         user.setBirthDate(value);
 
         assertEquals(user.getBirthDate(), value);
@@ -270,32 +267,32 @@ class UserTest {
     }
 
     @Test
-    void getCreatedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getCreatedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         user.setCreatedAt(value);
 
         assertEquals(user.getCreatedAt(), value);
     }
 
     @Test
-    void getModifiedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getModifiedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         user.setModifiedAt(value);
 
         assertEquals(user.getModifiedAt(), value);
     }
 
     @Test
-    void getTrashedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getTrashedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         user.setTrashedAt(value);
 
         assertEquals(user.getTrashedAt(), value);
     }
 
     @Test
-    void getRemovedAt() throws Exception {
-        Date value = new SimpleDateFormat("yyyy-MM-dd").parse("2020-03-20");
+    void getRemovedAt() {
+        LocalDate value = LocalDate.of(2020, 3, 20);
         user.setRemovedAt(value);
 
         assertEquals(user.getRemovedAt(), value);

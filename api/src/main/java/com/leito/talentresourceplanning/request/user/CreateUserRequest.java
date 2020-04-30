@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -19,7 +19,7 @@ public class CreateUserRequest {
     @NotBlank
     private String lastName;
 
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private LifeState lifeState;
 

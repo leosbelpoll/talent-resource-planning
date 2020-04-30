@@ -1,4 +1,4 @@
-package com.leito.talentresourceplanning.controller;
+package com.leito.talentresourceplanning.controller.util;
 
 public class StatusCodesMessages {
 
