@@ -46,4 +46,8 @@ public class User extends BaseEntity{
             setLifeState(request.getLifeState(), request.getLifeStateDescription());
         }
     }
+
+    public static User getByCreateRequest(CreateUserRequest createRequest){
+        return new User(createRequest);
+    }
 }

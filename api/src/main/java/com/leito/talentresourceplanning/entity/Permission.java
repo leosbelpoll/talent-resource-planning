@@ -2,6 +2,7 @@ package com.leito.talentresourceplanning.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leito.talentresourceplanning.request.permission.CreatePermissionRequest;
+import com.leito.talentresourceplanning.request.util.BaseCreateRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,5 +39,9 @@ public class Permission extends BaseEntity{
     public Permission(CreatePermissionRequest request) {
         setName(request.getName());
         setDescription(request.getDescription());
+    }
+
+    public static Permission getByCreateRequest(CreatePermissionRequest createRequest){
+        return new Permission(createRequest);
     }
 }

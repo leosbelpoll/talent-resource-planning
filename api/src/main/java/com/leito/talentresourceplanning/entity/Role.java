@@ -89,4 +89,8 @@ public class Role extends BaseEntity {
     public boolean hasPermission(Permission permission) {
         return getPermissions().contains(permission);
     }
+
+    public static Role getByCreateRequest(CreateRoleRequest createRequest){
+        return new Role(createRequest);
+    }
 }

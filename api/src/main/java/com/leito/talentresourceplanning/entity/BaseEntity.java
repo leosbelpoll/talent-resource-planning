@@ -1,18 +1,19 @@
 package com.leito.talentresourceplanning.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.leito.talentresourceplanning.request.util.BaseCreateRequest;
+import com.leito.talentresourceplanning.util.BaseData;
+import com.leito.talentresourceplanning.util.Messages;
 import lombok.*;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDate;
 
 @MappedSuperclass
 @Setter
 @Getter
-public class BaseEntity {
+public abstract class BaseEntity extends BaseData {
 //    @JsonIgnore
 //    private List<HistoryTrack> historyTracks = new ArrayList<>();
 
@@ -20,25 +21,7 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate createdAt;
-
-    @JsonIgnore
-    private LocalDate modifiedAt;
-
-    @JsonIgnore
-    private LocalDate trashedAt;
-
-    @JsonIgnore
-    private LocalDate removedAt;
-
-    @Setter(AccessLevel.PRIVATE)
-    private LifeState lifeState;
-
-    @Setter(AccessLevel.PRIVATE)
-    private String lifeStateDescription;
-
-    public void setLifeState(LifeState lifeState, String lifeStateDescription) {
-        setLifeState(lifeState);
-        setLifeStateDescription(lifeStateDescription);
+    public static BaseEntity getByCreateRequest(BaseCreateRequest baseCreateRequest){
+        throw new IllegalStateException(Messages.UTILITY_CLASS);
     }
 }
