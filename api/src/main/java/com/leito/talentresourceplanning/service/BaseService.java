@@ -40,7 +40,7 @@ public abstract class BaseService<T extends BaseEntity> {
 
     public T create(T item) {
         item.setCreatedAt(LocalDate.now());
-        item.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        item.setLifeState(LifeState.CREATED);
         T newItem = repository.save(item);
 
         return newItem;
@@ -65,7 +65,7 @@ public abstract class BaseService<T extends BaseEntity> {
         }
 
         T item = optionalItem.get();
-        item.setLifeState(LifeState.TRASHED, LifeState.TRASHED.toString());
+        item.setLifeState(LifeState.TRASHED);
         item.setTrashedAt(LocalDate.now());
 
         T trashedItem = repository.save(item);
@@ -80,7 +80,7 @@ public abstract class BaseService<T extends BaseEntity> {
         }
 
         T item = optionalItem.get();
-        item.setLifeState(LifeState.REMOVED, LifeState.REMOVED.toString());
+        item.setLifeState(LifeState.REMOVED);
         item.setRemovedAt(LocalDate.now());
 
         T removedItem = repository.save(item);

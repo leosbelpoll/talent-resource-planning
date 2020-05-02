@@ -50,7 +50,7 @@ class UserControllerTest {
         user1.setLastName(Constants.user_lastName);
         user1.setBirthDate(Constants.user_birthDate);
         user1.setRoles(Constants.user_roles);
-        user1.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        user1.setLifeState(LifeState.CREATED);
         user1.setCreatedAt(Constants.createdAt);
         user1.setModifiedAt(Constants.modifiedAt);
 
@@ -61,7 +61,7 @@ class UserControllerTest {
         user2.setLastName(Constants.user_lastName);
         user2.setBirthDate(Constants.user_birthDate);
         user2.setRoles(Constants.user_roles);
-        user2.setLifeState(LifeState.ACTIVATED, LifeState.ACTIVATED.toString());
+        user2.setLifeState(LifeState.ACTIVATED);
         user2.setCreatedAt(Constants.createdAt);
         user2.setModifiedAt(Constants.modifiedAt);
 
@@ -96,7 +96,7 @@ class UserControllerTest {
         user.setLastName(Constants.user_lastName);
         user.setBirthDate(Constants.user_birthDate);
         user.setRoles(Constants.user_roles);
-        user.setLifeState(LifeState.REMOVED, LifeState.REMOVED.toString());
+        user.setLifeState(LifeState.REMOVED);
         user.setCreatedAt(Constants.createdAt);
         user.setModifiedAt(Constants.modifiedAt);
         user.setTrashedAt(Constants.trashedAt);
@@ -116,7 +116,7 @@ class UserControllerTest {
         user.setLastName(Constants.user_lastName);
         user.setBirthDate(Constants.user_birthDate);
         user.setRoles(Constants.user_roles);
-        user.setLifeState(LifeState.REMOVED, LifeState.REMOVED.toString());
+        user.setLifeState(LifeState.REMOVED);
         user.setCreatedAt(Constants.createdAt);
         user.setModifiedAt(Constants.modifiedAt);
         user.setTrashedAt(Constants.trashedAt);
@@ -137,7 +137,7 @@ class UserControllerTest {
         user.setLastName(Constants.user_lastName);
         user.setBirthDate(Constants.user_birthDate);
         user.setRoles(Constants.user_roles);
-        user.setLifeState(LifeState.REMOVED, LifeState.REMOVED.toString());
+        user.setLifeState(LifeState.REMOVED);
         user.setCreatedAt(Constants.createdAt);
         user.setModifiedAt(Constants.modifiedAt);
         user.setTrashedAt(Constants.trashedAt);
@@ -157,7 +157,8 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.lifeStateDescription").value(LifeState.REMOVED.toString()))
                 .andExpect(jsonPath("$.createdAt").value(Constants.createdAt.toString()))
                 .andExpect(jsonPath("$.modifiedAt").value(Constants.modifiedAt.toString()))
-                .andExpect(jsonPath("$.trashedAt").value(Constants.trashedAt.toString()));
+                .andExpect(jsonPath("$.trashedAt").value(Constants.trashedAt.toString()))
+                .andExpect(jsonPath("$.removedAt").value(Constants.removedAt.toString()));
     }
 
     @Test
@@ -174,7 +175,7 @@ class UserControllerTest {
         user.setLastName(Constants.user_lastName);
         user.setBirthDate(Constants.user_birthDate);
         user.setRoles(Constants.user_roles);
-        user.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        user.setLifeState(LifeState.CREATED);
         user.setCreatedAt(Constants.createdAt);
 
         when(service.create(any(User.class))).thenReturn(user);

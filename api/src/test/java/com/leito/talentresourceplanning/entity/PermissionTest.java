@@ -31,7 +31,7 @@ class PermissionTest {
         permission.setName(name);
         permission.setDescription(description);
         permission.setRoles(roles);
-        permission.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        permission.setLifeState(LifeState.CREATED);
         permission.setCreatedAt(createdAt);
         permission.setModifiedAt(modifiedAt);
         permission.setTrashedAt(trashedAt);
@@ -106,6 +106,15 @@ class PermissionTest {
     }
 
     @Test
+    void setLifeStateSimple() {
+        LifeState value = LifeState.ACTIVATED;
+        permission.setLifeState(value);
+
+        assertEquals(permission.getLifeState(), value);
+        assertEquals(permission.getLifeStateDescription(), value.toString());
+    }
+
+    @Test
     void setLifeState() {
         LifeState value = LifeState.ACTIVATED;
         String valueDescription = "ACTIVATED";
@@ -177,6 +186,15 @@ class PermissionTest {
         permission.setRoles(value);
 
         assertEquals(permission.getRoles(), value);
+    }
+
+    @Test
+    void getLifeStateSimple() {
+        LifeState value = LifeState.ACTIVATED;
+        permission.setLifeState(value);
+
+        assertEquals(permission.getLifeState(), value);
+        assertEquals(permission.getLifeStateDescription(), value.toString());
     }
 
     @Test

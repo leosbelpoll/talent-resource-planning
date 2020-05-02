@@ -46,7 +46,7 @@ class PermissionControllerTest {
         permission1.setName(Constants.permission_name);
         permission1.setDescription(Constants.permission_description);
         permission1.setRoles(Constants.permission_roles);
-        permission1.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        permission1.setLifeState(LifeState.CREATED);
         permission1.setCreatedAt(Constants.createdAt);
         permission1.setModifiedAt(Constants.modifiedAt);
         permission1.setTrashedAt(Constants.trashedAt);
@@ -56,7 +56,7 @@ class PermissionControllerTest {
         permission2.setName(Constants.permission_name);
         permission2.setDescription(Constants.permission_description);
         permission2.setRoles(Constants.permission_roles);
-        permission2.setLifeState(LifeState.ACTIVATED, LifeState.ACTIVATED.toString());
+        permission2.setLifeState(LifeState.ACTIVATED);
         permission2.setCreatedAt(Constants.createdAt);
         permission2.setModifiedAt(Constants.modifiedAt);
         permission2.setTrashedAt(Constants.trashedAt);
@@ -93,7 +93,7 @@ class PermissionControllerTest {
         permission.setName(Constants.permission_name);
         permission.setDescription(Constants.permission_description);
         permission.setRoles(Constants.permission_roles);
-        permission.setLifeState(LifeState.TRASHED, LifeState.TRASHED.toString());
+        permission.setLifeState(LifeState.TRASHED);
         permission.setCreatedAt(Constants.createdAt);
         permission.setModifiedAt(Constants.modifiedAt);
         permission.setTrashedAt(Constants.trashedAt);
@@ -111,7 +111,7 @@ class PermissionControllerTest {
         permission.setName(Constants.permission_name);
         permission.setDescription(Constants.permission_description);
         permission.setRoles(Constants.permission_roles);
-        permission.setLifeState(LifeState.REMOVED, LifeState.REMOVED.toString());
+        permission.setLifeState(LifeState.REMOVED);
         permission.setCreatedAt(Constants.createdAt);
         permission.setModifiedAt(Constants.modifiedAt);
         permission.setTrashedAt(Constants.trashedAt);
@@ -130,10 +130,11 @@ class PermissionControllerTest {
         permission.setName(Constants.permission_name);
         permission.setDescription(Constants.permission_description);
         permission.setRoles(Constants.permission_roles);
-        permission.setLifeState(LifeState.TRASHED, LifeState.TRASHED.toString());
+        permission.setLifeState(LifeState.REMOVED);
         permission.setCreatedAt(Constants.createdAt);
         permission.setModifiedAt(Constants.modifiedAt);
         permission.setTrashedAt(Constants.trashedAt);
+        permission.setRemovedAt(Constants.removedAt);
 
         when(service.getById(any(Long.class))).thenReturn(permission);
 
@@ -143,11 +144,12 @@ class PermissionControllerTest {
                 .andExpect(jsonPath("$.name").value(Constants.permission_name))
                 .andExpect(jsonPath("$.description").value(Constants.permission_description))
                 .andExpect(jsonPath("$", hasKey("roles")))
-                .andExpect(jsonPath("$.lifeState").value(LifeState.TRASHED.toString()))
-                .andExpect(jsonPath("$.lifeStateDescription").value(LifeState.TRASHED.toString()))
+                .andExpect(jsonPath("$.lifeState").value(LifeState.REMOVED.toString()))
+                .andExpect(jsonPath("$.lifeStateDescription").value(LifeState.REMOVED.toString()))
                 .andExpect(jsonPath("$.createdAt").value(Constants.createdAt.toString()))
                 .andExpect(jsonPath("$.modifiedAt").value(Constants.modifiedAt.toString()))
-                .andExpect(jsonPath("$.trashedAt").value(Constants.trashedAt.toString()));
+                .andExpect(jsonPath("$.trashedAt").value(Constants.trashedAt.toString()))
+                .andExpect(jsonPath("$.removedAt").value(Constants.removedAt.toString()));
     }
 
     @Test
@@ -160,7 +162,7 @@ class PermissionControllerTest {
         permission.setId(1L);
         permission.setName(request.getName());
         permission.setDescription(request.getDescription());
-        permission.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        permission.setLifeState(LifeState.CREATED);
         permission.setCreatedAt(Constants.createdAt);
 
         when(service.create(any(Permission.class))).thenReturn(permission);

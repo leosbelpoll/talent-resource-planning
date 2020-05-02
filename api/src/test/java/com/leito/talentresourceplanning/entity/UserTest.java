@@ -36,7 +36,7 @@ class UserTest {
         user.setLastName(lastName);
         user.setBirthDate(birthDate);
         user.setRoles(roles);
-        user.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        user.setLifeState(LifeState.CREATED);
         user.setCreatedAt(createdAt);
         user.setModifiedAt(modifiedAt);
         user.setTrashedAt(trashedAt);
@@ -161,6 +161,15 @@ class UserTest {
     }
 
     @Test
+    void setLifeStateSimple() {
+        LifeState value = LifeState.ACTIVATED;
+        user.setLifeState(value);
+
+        assertEquals(user.getLifeState(), value);
+        assertEquals(user.getLifeStateDescription(), value.toString());
+    }
+
+    @Test
     void setLifeState() {
         LifeState value = LifeState.ACTIVATED;
         String valueDescription = "ACTIVATED";
@@ -256,6 +265,15 @@ class UserTest {
         user.setRoles(value);
 
         assertEquals(user.getRoles(), value);
+    }
+
+    @Test
+    void getLifeStateSimple() {
+        LifeState value = LifeState.ACTIVATED;
+        user.setLifeState(value);
+
+        assertEquals(user.getLifeState(), value);
+        assertEquals(user.getLifeStateDescription(), value.toString());
     }
 
     @Test

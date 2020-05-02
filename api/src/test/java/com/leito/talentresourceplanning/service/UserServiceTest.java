@@ -41,7 +41,7 @@ class UserServiceTest {
         user1.setLastName(Constants.user_lastName);
         user1.setBirthDate(Constants.user_birthDate);
         user1.setRoles(Constants.user_roles);
-        user1.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        user1.setLifeState(LifeState.CREATED);
         user1.setCreatedAt(Constants.createdAt);
 
         User user2 = new User();
@@ -51,7 +51,7 @@ class UserServiceTest {
         user2.setLastName(Constants.user_lastName);
         user2.setBirthDate(Constants.user_birthDate);
         user2.setRoles(Constants.user_roles);
-        user2.setLifeState(LifeState.ACTIVATED, LifeState.ACTIVATED.toString());
+        user2.setLifeState(LifeState.ACTIVATED);
         user2.setCreatedAt(Constants.createdAt);
         user2.setModifiedAt(Constants.modifiedAt);
 
@@ -92,7 +92,7 @@ class UserServiceTest {
         user.setLastName(Constants.user_lastName);
         user.setBirthDate(Constants.user_birthDate);
         user.setRoles(Constants.user_roles);
-        user.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        user.setLifeState(LifeState.CREATED);
         user.setCreatedAt(Constants.createdAt);
 
         when(userRepository.findById(any(Long.class))).thenReturn(Optional.of(user));

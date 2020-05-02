@@ -34,7 +34,7 @@ public class RegisterUserRequest extends BaseRequest {
         user.setLastName(lastName);
         user.setBirthDate(birthDate);
 
-        user.setLifeState(LifeState.REGISTERED, LifeState.REGISTERED.toString());
+        user.setLifeState(LifeState.REGISTERED);
         user.setCreatedAt(LocalDate.now());
 
         return user;

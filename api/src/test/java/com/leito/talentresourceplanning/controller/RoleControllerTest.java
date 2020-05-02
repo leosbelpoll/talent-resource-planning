@@ -49,7 +49,7 @@ class RoleControllerTest {
         role1.setDescription(Constants.role_description);
         role1.setUsers(Constants.role_users);
         role1.setPermissions(Constants.role_permissions);
-        role1.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        role1.setLifeState(LifeState.CREATED);
         role1.setCreatedAt(Constants.createdAt);
         role1.setModifiedAt(Constants.modifiedAt);
         role1.setTrashedAt(Constants.trashedAt);
@@ -60,7 +60,7 @@ class RoleControllerTest {
         role2.setDescription(Constants.role_description);
         role2.setUsers(Constants.role_users);
         role2.setPermissions(Constants.role_permissions);
-        role2.setLifeState(LifeState.ACTIVATED, LifeState.ACTIVATED.toString());
+        role2.setLifeState(LifeState.ACTIVATED);
         role2.setCreatedAt(Constants.createdAt);
         role2.setModifiedAt(Constants.modifiedAt);
         role2.setTrashedAt(Constants.trashedAt);
@@ -98,7 +98,7 @@ class RoleControllerTest {
         role.setDescription(Constants.role_description);
         role.setUsers(Constants.role_users);
         role.setPermissions(Constants.role_permissions);
-        role.setLifeState(LifeState.TRASHED, LifeState.TRASHED.toString());
+        role.setLifeState(LifeState.TRASHED);
         role.setCreatedAt(Constants.createdAt);
         role.setModifiedAt(Constants.modifiedAt);
         role.setTrashedAt(Constants.trashedAt);
@@ -117,7 +117,7 @@ class RoleControllerTest {
         role.setDescription(Constants.role_description);
         role.setUsers(Constants.role_users);
         role.setPermissions(Constants.role_permissions);
-        role.setLifeState(LifeState.REMOVED, LifeState.REMOVED.toString());
+        role.setLifeState(LifeState.REMOVED);
         role.setCreatedAt(Constants.createdAt);
         role.setModifiedAt(Constants.modifiedAt);
         role.setTrashedAt(Constants.trashedAt);
@@ -137,10 +137,11 @@ class RoleControllerTest {
         role.setDescription(Constants.role_description);
         role.setUsers(Constants.role_users);
         role.setPermissions(Constants.role_permissions);
-        role.setLifeState(LifeState.TRASHED, LifeState.TRASHED.toString());
+        role.setLifeState(LifeState.REMOVED);
         role.setCreatedAt(Constants.createdAt);
         role.setModifiedAt(Constants.modifiedAt);
         role.setTrashedAt(Constants.trashedAt);
+        role.setRemovedAt(Constants.removedAt);
 
         when(service.getById(any(Long.class))).thenReturn(role);
 
@@ -151,11 +152,12 @@ class RoleControllerTest {
                 .andExpect(jsonPath("$.description").value(Constants.role_description))
                 .andExpect(jsonPath("$", hasKey("users")))
                 .andExpect(jsonPath("$", hasKey("permissions")))
-                .andExpect(jsonPath("$.lifeState").value(LifeState.TRASHED.toString()))
-                .andExpect(jsonPath("$.lifeStateDescription").value(LifeState.TRASHED.toString()))
+                .andExpect(jsonPath("$.lifeState").value(LifeState.REMOVED.toString()))
+                .andExpect(jsonPath("$.lifeStateDescription").value(LifeState.REMOVED.toString()))
                 .andExpect(jsonPath("$.createdAt").value(Constants.createdAt.toString()))
                 .andExpect(jsonPath("$.modifiedAt").value(Constants.modifiedAt.toString()))
-                .andExpect(jsonPath("$.trashedAt").value(Constants.trashedAt.toString()));
+                .andExpect(jsonPath("$.trashedAt").value(Constants.trashedAt.toString()))
+                .andExpect(jsonPath("$.removedAt").value(Constants.removedAt.toString()));
     }
 
     @Test
@@ -168,7 +170,7 @@ class RoleControllerTest {
         role.setId(1L);
         role.setName(request.getName());
         role.setDescription(request.getDescription());
-        role.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        role.setLifeState(LifeState.CREATED);
         role.setCreatedAt(Constants.createdAt);
 
         when(service.create(any(Role.class))).thenReturn(role);

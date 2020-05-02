@@ -40,7 +40,7 @@ class PermissionServiceTest {
         permission1.setName(Constants.permission_name);
         permission1.setDescription(Constants.permission_description);
         permission1.setRoles(Constants.permission_roles);
-        permission1.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        permission1.setLifeState(LifeState.CREATED);
         permission1.setCreatedAt(Constants.createdAt);
 
         Permission permission2 = new Permission();
@@ -48,7 +48,7 @@ class PermissionServiceTest {
         permission2.setName(Constants.permission_name);
         permission2.setDescription(Constants.permission_description);
         permission2.setRoles(Constants.permission_roles);
-        permission2.setLifeState(LifeState.ACTIVATED, LifeState.ACTIVATED.toString());
+        permission2.setLifeState(LifeState.ACTIVATED);
         permission2.setCreatedAt(Constants.createdAt);
         permission2.setModifiedAt(Constants.modifiedAt);
 
@@ -81,7 +81,7 @@ class PermissionServiceTest {
         permission.setName(Constants.permission_name);
         permission.setDescription(Constants.permission_description);
         permission.setRoles(Constants.permission_roles);
-        permission.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        permission.setLifeState(LifeState.CREATED);
         permission.setCreatedAt(Constants.createdAt);
 
         when(permissionRepository.findById(any(Long.class))).thenReturn(Optional.of(permission));
@@ -128,7 +128,7 @@ class PermissionServiceTest {
         permission.setName(Constants.permission_name);
         permission.setDescription(Constants.permission_description);
         permission.setRoles(Constants.permission_roles);
-        permission.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        permission.setLifeState(LifeState.CREATED);
         permission.setCreatedAt(Constants.createdAt);
 
         when(permissionRepository.findById(any(Long.class))).thenReturn(Optional.of(permission));
@@ -163,7 +163,7 @@ class PermissionServiceTest {
         permission.setName(Constants.permission_name);
         permission.setDescription(Constants.permission_description);
         permission.setRoles(Constants.permission_roles);
-        permission.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        permission.setLifeState(LifeState.CREATED);
         permission.setCreatedAt(Constants.createdAt);
 
         when(permissionRepository.findById(any(Long.class))).thenReturn(Optional.of(permission));

@@ -40,7 +40,7 @@ class RoleServiceTest {
         role1.setDescription(Constants.role_description);
         role1.setUsers(Constants.role_users);
         role1.setPermissions(Constants.role_permissions);
-        role1.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        role1.setLifeState(LifeState.CREATED);
         role1.setCreatedAt(Constants.createdAt);
 
         Role role2 = new Role();
@@ -49,7 +49,7 @@ class RoleServiceTest {
         role2.setDescription(Constants.role_description);
         role2.setUsers(Constants.role_users);
         role2.setPermissions(Constants.role_permissions);
-        role2.setLifeState(LifeState.ACTIVATED, LifeState.ACTIVATED.toString());
+        role2.setLifeState(LifeState.ACTIVATED);
         role2.setCreatedAt(Constants.createdAt);
         role2.setModifiedAt(Constants.modifiedAt);
 
@@ -87,7 +87,7 @@ class RoleServiceTest {
         role.setDescription(Constants.role_description);
         role.setUsers(Constants.role_users);
         role.setPermissions(Constants.role_permissions);
-        role.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        role.setLifeState(LifeState.CREATED);
         role.setCreatedAt(Constants.createdAt);
 
         when(roleRepository.findById(any(Long.class))).thenReturn(Optional.of(role));
@@ -140,7 +140,7 @@ class RoleServiceTest {
         role.setDescription(Constants.role_description);
         role.setUsers(Constants.role_users);
         role.setPermissions(Constants.role_permissions);
-        role.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        role.setLifeState(LifeState.CREATED);
         role.setCreatedAt(Constants.createdAt);
 
         when(roleRepository.findById(any(Long.class))).thenReturn(Optional.of(role));
@@ -178,7 +178,7 @@ class RoleServiceTest {
         role.setDescription(Constants.role_description);
         role.setUsers(Constants.role_users);
         role.setPermissions(Constants.role_permissions);
-        role.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        role.setLifeState(LifeState.CREATED);
         role.setCreatedAt(Constants.createdAt);
 
         when(roleRepository.findById(any(Long.class))).thenReturn(Optional.of(role));

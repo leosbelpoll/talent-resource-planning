@@ -32,7 +32,7 @@ class RoleTest {
         role.setDescription(description);
         role.setUsers(users);
         role.setPermissions(permissions);
-        role.setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
+        role.setLifeState(LifeState.CREATED);
         role.setCreatedAt(createdAt);
         role.setModifiedAt(modifiedAt);
         role.setTrashedAt(trashedAt);
@@ -112,6 +112,15 @@ class RoleTest {
         role.setPermissions(value);
 
         assertEquals(role.getPermissions(), value);
+    }
+
+    @Test
+    void setLifeStateSimple() {
+        LifeState value = LifeState.ACTIVATED;
+        role.setLifeState(value);
+
+        assertEquals(role.getLifeState(), value);
+        assertEquals(role.getLifeStateDescription(), value.toString());
     }
 
     @Test
@@ -205,6 +214,15 @@ class RoleTest {
 
         assertTrue(role.hasPermission(permission));
         assertFalse(role.hasPermission(permissionDoestHave));
+    }
+
+    @Test
+    void getLifeStateSimple() {
+        LifeState value = LifeState.ACTIVATED;
+        role.setLifeState(value);
+
+        assertEquals(role.getLifeState(), value);
+        assertEquals(role.getLifeStateDescription(), value.toString());
     }
 
     @Test
