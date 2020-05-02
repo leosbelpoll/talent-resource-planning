@@ -67,7 +67,8 @@ class RoleTest {
         request.setName(name);
         request.setDescription(description);
 
-        Role role = new Role(request);
+        Role role = new Role();
+        role.updateByCreateRequest(request);
 
         assertEquals(role.getName(), name);
         assertEquals(role.getDescription(), description);

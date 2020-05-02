@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Permission extends BaseEntity{
+public class Permission extends CrudEntity{
     public static final String COLLECTION = "permissions";
 
     @NotBlank
@@ -36,12 +36,9 @@ public class Permission extends BaseEntity{
         setDescription(description);
     }
 
-    public Permission(CreatePermissionRequest request) {
-        setName(request.getName());
-        setDescription(request.getDescription());
-    }
-
-    public static Permission getByCreateRequest(CreatePermissionRequest createRequest){
-        return new Permission(createRequest);
+    @Override
+    public void updateByCreateRequest(BaseCreateRequest request) {
+        setName(((CreatePermissionRequest) request).getName());
+        setDescription(((CreatePermissionRequest) request).getDescription());
     }
 }

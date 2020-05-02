@@ -1,5 +1,6 @@
 package com.leito.talentresourceplanning.response.permission;
 
+import com.leito.talentresourceplanning.entity.BaseEntity;
 import com.leito.talentresourceplanning.entity.Permission;
 import com.leito.talentresourceplanning.entity.Role;
 import com.leito.talentresourceplanning.response.util.BaseDetailResponse;
@@ -10,7 +11,7 @@ import java.util.Set;
 
 @Setter
 @Getter
-public class GetPermissionResponse extends BaseDetailResponse {
+public class DetailPermissionResponse extends BaseDetailResponse {
 
     private String name;
 
@@ -18,10 +19,13 @@ public class GetPermissionResponse extends BaseDetailResponse {
 
     private Set<Role> roles;
 
-    public GetPermissionResponse(Permission permission) {
-        super(permission);
-        setName(permission.getName());
-        setDescription(permission.getDescription());
-        setRoles(permission.getRoles());
+    public DetailPermissionResponse() {
+    }
+
+    public void updateByEntity(BaseEntity item) {
+        super.updateByEntity(item);
+        setName(((Permission) item).getName());
+        setDescription(((Permission) item).getDescription());
+        setRoles(((Permission) item).getRoles());
     }
 }

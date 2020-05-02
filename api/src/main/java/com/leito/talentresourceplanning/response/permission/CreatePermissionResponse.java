@@ -1,5 +1,6 @@
 package com.leito.talentresourceplanning.response.permission;
 
+import com.leito.talentresourceplanning.entity.BaseEntity;
 import com.leito.talentresourceplanning.entity.Permission;
 import com.leito.talentresourceplanning.response.util.BaseCreateResponse;
 import lombok.Getter;
@@ -12,12 +13,13 @@ public class CreatePermissionResponse extends BaseCreateResponse {
 
     private String description;
 
-    public CreatePermissionResponse(Permission permission) {
-        super(permission);
-        setName(permission.getName());
-        setDescription(permission.getDescription());
+    public CreatePermissionResponse() {
+    }
 
-        setLifeState(permission.getLifeState(), permission.getLifeStateDescription());
-        setCreatedAt(permission.getCreatedAt());
+    @Override
+    public void updateByEntity(BaseEntity item) {
+        super.updateByEntity(item);
+        setName(((Permission) item).getName());
+        setDescription(((Permission) item).getDescription());
     }
 }

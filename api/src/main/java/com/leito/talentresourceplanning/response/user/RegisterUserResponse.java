@@ -1,5 +1,6 @@
 package com.leito.talentresourceplanning.response.user;
 
+import com.leito.talentresourceplanning.entity.BaseEntity;
 import com.leito.talentresourceplanning.entity.User;
 import com.leito.talentresourceplanning.response.util.BaseResponse;
 import lombok.Getter;
@@ -18,14 +19,11 @@ public class RegisterUserResponse extends BaseResponse {
 
     private LocalDate birthDate;
 
-    public RegisterUserResponse(User user) {
-        super(user);
-        setUsername(user.getUsername());
-        setName(user.getName());
-        setLastName(user.getLastName());
-        setBirthDate(user.getBirthDate());
-
-        setLifeState(user.getLifeState(), user.getLifeStateDescription());
-        setCreatedAt(user.getCreatedAt());
+    public void updateByEntity(BaseEntity item) {
+        super.updateByEntity(item);
+        setUsername(((User) item).getUsername());
+        setName(((User) item).getName());
+        setLastName(((User) item).getLastName());
+        setBirthDate(((User) item).getBirthDate());
     }
 }

@@ -2,6 +2,7 @@ package com.leito.talentresourceplanning.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leito.talentresourceplanning.request.user.CreateUserRequest;
+import com.leito.talentresourceplanning.request.util.BaseCreateRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.util.*;
 @AllArgsConstructor
 @Setter
 @Getter
-public class User extends BaseEntity{
+public class User extends CrudEntity {
     public static final String COLLECTION = "users";
 
     @Column(unique = true)
@@ -35,19 +36,16 @@ public class User extends BaseEntity{
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
 
-    public User(CreateUserRequest request) {
-        setUsername(request.getUsername());
-        setName(request.getName());
-        setLastName(request.getLastName());
-        setBirthDate(request.getBirthDate());
-        if (request.getLifeState() == null) {
+    @Override
+    public void updateByCreateRequest(BaseCreateRequest request) {
+        setUsername(((CreateUserRequest) request).getUsername());
+        setName(((CreateUserRequest) request).getName());
+        setLastName(((CreateUserRequest) request).getLastName());
+        setBirthDate(((CreateUserRequest) request).getBirthDate());
+        if (((CreateUserRequest) request).getLifeState() == null) {
             setLifeState(LifeState.CREATED, LifeState.CREATED.toString());
         } else {
-            setLifeState(request.getLifeState(), request.getLifeStateDescription());
+            setLifeState(((CreateUserRequest) request).getLifeState(), ((CreateUserRequest) request).getLifeStateDescription());
         }
-    }
-
-    public static User getByCreateRequest(CreateUserRequest createRequest){
-        return new User(createRequest);
     }
 }

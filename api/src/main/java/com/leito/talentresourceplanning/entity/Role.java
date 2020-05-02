@@ -2,6 +2,7 @@ package com.leito.talentresourceplanning.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leito.talentresourceplanning.request.role.CreateRoleRequest;
+import com.leito.talentresourceplanning.request.util.BaseCreateRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.*;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Role extends BaseEntity {
+public class Role extends CrudEntity {
     public static final String COLLECTION = "roles";
 
     @NotBlank
@@ -50,9 +51,10 @@ public class Role extends BaseEntity {
         setDescription(description);
     }
 
-    public Role(CreateRoleRequest request) {
-        setName(request.getName());
-        setDescription(request.getDescription());
+    @Override
+    public void updateByCreateRequest(BaseCreateRequest request) {
+        setName(((CreateRoleRequest) request).getName());
+        setDescription(((CreateRoleRequest) request).getDescription());
     }
 
 //    public Role(String name, String description, Set<Permission> permissions) {
@@ -88,9 +90,5 @@ public class Role extends BaseEntity {
 
     public boolean hasPermission(Permission permission) {
         return getPermissions().contains(permission);
-    }
-
-    public static Role getByCreateRequest(CreateRoleRequest createRequest){
-        return new Role(createRequest);
     }
 }

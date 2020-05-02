@@ -72,7 +72,8 @@ class UserTest {
         request.setLifeState(LifeState.CREATED);
         request.setLifeStateDescription(LifeState.CREATED.toString());
 
-        User user = new User(request);
+        User user = new User();
+        user.updateByCreateRequest(request);
 
         assertEquals(user.getUsername(), username);
         assertEquals(user.getName(), name);
@@ -91,7 +92,8 @@ class UserTest {
         request.setUsername(username);
         request.setBirthDate(birthDate);
 
-        User user = new User(request);
+        User user = new User();
+        user.updateByCreateRequest(request);
 
         assertEquals(user.getUsername(), username);
         assertEquals(user.getName(), name);

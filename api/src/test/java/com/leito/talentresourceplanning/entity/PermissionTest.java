@@ -66,7 +66,8 @@ class PermissionTest {
         request.setName(name);
         request.setDescription(description);
 
-        Permission permission = new Permission(request);
+        Permission permission = new Permission();
+        permission.updateByCreateRequest(request);
 
         assertEquals(permission.getName(), name);
         assertEquals(permission.getDescription(), description);

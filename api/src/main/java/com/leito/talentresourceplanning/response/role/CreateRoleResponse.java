@@ -1,5 +1,6 @@
 package com.leito.talentresourceplanning.response.role;
 
+import com.leito.talentresourceplanning.entity.BaseEntity;
 import com.leito.talentresourceplanning.entity.Role;
 import com.leito.talentresourceplanning.response.util.BaseCreateResponse;
 import lombok.Getter;
@@ -12,12 +13,13 @@ public class CreateRoleResponse extends BaseCreateResponse {
 
     private String description;
 
-    public CreateRoleResponse(Role role) {
-        super(role);
-        setName(role.getName());
-        setDescription(role.getDescription());
+    public CreateRoleResponse() {
+    }
 
-        setLifeState(role.getLifeState(), role.getLifeStateDescription());
-        setCreatedAt(role.getCreatedAt());
+    @Override
+    public void updateByEntity(BaseEntity item) {
+        super.updateByEntity(item);
+        setName(((Role) item).getName());
+        setDescription(((Role) item).getDescription());
     }
 }
