@@ -74,6 +74,7 @@ public class CrudController<T extends CrudEntity,
             @ApiResponse(code = 409, message = StatusCodesMessages.STATUS_CODE_409)
     })
     @PostMapping
+    // TODO: #1pz75v Change the create Response to DetailedResponse
     public ResponseEntity<CreateResponse> create(@RequestBody @Valid CreateRequest request) {
         try {
             baseResource.updateByCreateRequest(request);
@@ -97,6 +98,7 @@ public class CrudController<T extends CrudEntity,
             @ApiResponse(code = 500, message = StatusCodesMessages.STATUS_CODE_500)
     })
     @PutMapping
+    // TODO: #1pz75v Change the update Response to DetailedResponse
     public ResponseEntity<T> update(@RequestBody @Valid T item) {
         try {
             T updatedItem = (T) service.update(item);

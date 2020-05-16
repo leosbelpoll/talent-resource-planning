@@ -4,11 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.leito.talentresourceplanning.controller.util.Mappings;
 import com.leito.talentresourceplanning.entity.LifeState;
 import com.leito.talentresourceplanning.entity.Permission;
+import com.leito.talentresourceplanning.repository.PermissionRepository;
 import com.leito.talentresourceplanning.request.permission.CreatePermissionRequest;
 import com.leito.talentresourceplanning.service.PermissionService;
 import com.leito.talentresourceplanning.testutils.Constants;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.AdditionalAnswers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -83,7 +85,29 @@ class PermissionControllerTest {
 
     @Test
     void update() throws Exception {
-        // TODO: Implement this
+        Permission permission = new Permission();
+        permission.setId(1L);
+        permission.setName(Constants.permission_name);
+        permission.setDescription(Constants.permission_description);
+        permission.setRoles(Constants.permission_roles);
+        permission.setLifeState(LifeState.TRASHED);
+        permission.setCreatedAt(Constants.createdAt);
+        permission.setModifiedAt(Constants.modifiedAt);
+        permission.setTrashedAt(Constants.trashedAt);
+
+        when(service.update(any(Permission.class))).then(AdditionalAnswers.returnsFirstArg());
+
+        // TODO: #1pz75v Change the update Response to DetailedResponse
+        mockMvc.perform(put(Mappings.PERMISSIONS)
+                .content(mapper.writeValueAsString(permission))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L))
+                .andExpect(jsonPath("$.name").value(Constants.permission_name))
+                .andExpect(jsonPath("$.description").value(Constants.permission_description))
+                .andExpect(jsonPath("$.lifeState").value(LifeState.TRASHED.toString()))
+                .andExpect(jsonPath("$.lifeStateDescription").value(LifeState.TRASHED.toString()))
+                .andExpect(jsonPath("$.createdAt").value(Constants.createdAt.toString()));
     }
 
     @Test
